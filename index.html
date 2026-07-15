@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teeth Scan Viewer</title>
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="scan-canvas" aria-label="3D teeth scan viewer"></canvas>
+
+      <aside class="control-panel" aria-label="Scan controls">
+        <header class="panel-header">
+          <div>
+            <p class="eyebrow" id="scan-source">Upload Mode</p>
+            <h1>Teeth Scan</h1>
+          </div>
+          <button class="icon-button" id="reset-view" type="button" title="Reset view" aria-label="Reset view">
+            <span aria-hidden="true">Reset</span>
+          </button>
+        </header>
+
+        <section class="control-section" aria-label="Scan upload">
+          <div class="section-title">Scan</div>
+          <label class="file-button">
+            <input id="zip-upload" type="file" accept=".zip,application/zip" />
+            <span>Upload ZIP</span>
+          </label>
+        </section>
+
+        <section class="control-section" aria-label="Model visibility">
+          <div class="section-title">Models</div>
+          <div class="model-list" id="model-list">
+            <p class="empty-copy">No scan loaded</p>
+          </div>
+        </section>
+
+        <section class="control-section" aria-label="Render mode">
+          <div class="section-title">Mode</div>
+          <div class="segmented-control" role="group" aria-label="Render mode">
+            <button class="segment is-active" type="button" data-mode="vertex">Color</button>
+            <button class="segment" type="button" data-mode="clay">Clay</button>
+          </div>
+        </section>
+
+        <section class="control-section" aria-label="View presets">
+          <div class="section-title">View</div>
+          <div class="view-grid">
+            <button type="button" data-view="front">Front</button>
+            <button type="button" data-view="upper">Upper</button>
+            <button type="button" data-view="lower">Lower</button>
+            <button type="button" data-view="left">Left</button>
+            <button type="button" data-view="right">Right</button>
+          </div>
+        </section>
+
+        <section class="control-section" aria-label="Object rotation">
+          <div class="section-title">Rotate</div>
+          <label class="range-row">
+            <span>X</span>
+            <input id="rotate-x" type="range" min="-180" max="180" value="0" step="1" />
+          </label>
+          <label class="range-row">
+            <span>Y</span>
+            <input id="rotate-y" type="range" min="-180" max="180" value="0" step="1" />
+          </label>
+          <label class="range-row">
+            <span>Z</span>
+            <input id="rotate-z" type="range" min="-180" max="180" value="0" step="1" />
+          </label>
+          <button class="secondary-action" id="reset-rotation" type="button">Zero Rotation</button>
+        </section>
+
+        <section class="control-section" aria-label="Lighting controls">
+          <div class="section-title">Lighting</div>
+          <label class="range-row">
+            <span>Key</span>
+            <input id="key-light" type="range" min="0" max="2.5" value="1.25" step="0.05" />
+          </label>
+          <label class="range-row">
+            <span>Ambient</span>
+            <input id="ambient-light" type="range" min="0" max="2.5" value="0.9" step="0.05" />
+          </label>
+        </section>
+
+        <section class="control-section" aria-label="Model data">
+          <div class="section-title">Mesh</div>
+          <dl class="stats" id="mesh-stats">
+            <div>
+              <dt>Status</dt>
+              <dd>Upload a ZIP</dd>
+            </div>
+          </dl>
+          <button class="primary-action" id="capture-view" type="button">Download PNG</button>
+        </section>
+      </aside>
+
+      <div class="gallery-strip is-hidden" aria-label="Scan photos"></div>
+
+      <div class="loading-overlay" id="loading-overlay" role="status" aria-live="polite">
+        <div class="loader"></div>
+        <p id="loading-label">Loading scan</p>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

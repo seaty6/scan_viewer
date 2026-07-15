@@ -1,0 +1,16 @@
+{
+  "name": "scan-viewer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "three": "latest",
+    "vite": "latest"
+  }
+}

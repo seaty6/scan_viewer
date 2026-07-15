@@ -1,0 +1,382 @@
+:root {
+  color-scheme: dark;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: #11100f;
+  color: #f5f1eb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+#scan-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.control-panel {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: min(340px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 8px;
+  background: rgb(22 20 19 / 82%);
+  box-shadow: 0 22px 60px rgb(0 0 0 / 32%);
+  backdrop-filter: blur(18px);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: #95d8ce;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.control-section {
+  display: grid;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+}
+
+.section-title {
+  color: #c8c0b8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.toggle-row,
+.range-row {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #f7f3ee;
+  font-size: 0.94rem;
+}
+
+.model-list {
+  display: grid;
+  gap: 8px;
+}
+
+.empty-copy {
+  margin: 0;
+  color: #c8c0b8;
+  font-size: 0.9rem;
+}
+
+.toggle-row input {
+  width: 46px;
+  flex: 0 0 auto;
+  height: 26px;
+  margin: 0;
+  accent-color: #72d4c7;
+  cursor: pointer;
+}
+
+.toggle-row span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.range-row input {
+  flex: 1;
+  min-width: 130px;
+  accent-color: #72d4c7;
+}
+
+.file-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.file-button span {
+  min-height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  color: #10100f;
+  font-weight: 700;
+  background: #72d4c7;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.file-button:hover span {
+  background: #8de3d8;
+}
+
+.file-button:active span {
+  transform: translateY(1px);
+}
+
+.segmented-control,
+.view-grid {
+  display: grid;
+  gap: 6px;
+}
+
+.segmented-control {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 4px;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 7%);
+}
+
+.segment,
+.view-grid button,
+.icon-button,
+.primary-action,
+.secondary-action {
+  min-height: 36px;
+  border-radius: 6px;
+  color: #f5f1eb;
+  background: rgb(255 255 255 / 9%);
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.segment:hover,
+.view-grid button:hover,
+.icon-button:hover,
+.primary-action:hover,
+.secondary-action:hover {
+  background: rgb(255 255 255 / 15%);
+}
+
+.segment:active,
+.view-grid button:active,
+.icon-button:active,
+.primary-action:active,
+.secondary-action:active {
+  transform: translateY(1px);
+}
+
+.segment.is-active {
+  color: #11100f;
+  background: #72d4c7;
+}
+
+.view-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.view-grid button {
+  padding: 0 8px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.icon-button {
+  min-width: 72px;
+  padding: 0 12px;
+  color: #11100f;
+  background: #f2c879;
+}
+
+.icon-button:hover {
+  background: #ffd78f;
+}
+
+.primary-action {
+  width: 100%;
+  color: #10100f;
+  font-weight: 700;
+  background: #f2c879;
+}
+
+.primary-action:hover {
+  background: #ffd78f;
+}
+
+.secondary-action {
+  width: 100%;
+  background: rgb(255 255 255 / 9%);
+}
+
+.stats {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.stats div {
+  display: grid;
+  grid-template-columns: minmax(64px, 0.42fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  min-height: 26px;
+}
+
+.stats dt {
+  color: #c8c0b8;
+  font-size: 0.84rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stats dd {
+  margin: 0;
+  color: #f7f3ee;
+  font-size: 0.84rem;
+  overflow-wrap: anywhere;
+}
+
+.gallery-strip {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 96px);
+  gap: 8px;
+}
+
+.gallery-strip.is-hidden {
+  display: none;
+}
+
+.gallery-strip img {
+  width: 96px;
+  height: 72px;
+  display: block;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 6px;
+  object-fit: cover;
+  background: #241f1d;
+  box-shadow: 0 14px 40px rgb(0 0 0 / 32%);
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 14px;
+  background: rgb(17 16 15 / 72%);
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease;
+}
+
+.loading-overlay.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.loading-overlay.is-error .loader {
+  display: none;
+}
+
+.loader {
+  width: 46px;
+  height: 46px;
+  border: 3px solid rgb(255 255 255 / 16%);
+  border-top-color: #72d4c7;
+  border-radius: 50%;
+  animation: spin 900ms linear infinite;
+}
+
+#loading-label {
+  margin: 0;
+  color: #f7f3ee;
+  font-weight: 700;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .control-panel {
+    top: auto;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    width: auto;
+    max-height: 48vh;
+    padding: 14px;
+  }
+
+  .gallery-strip {
+    top: 12px;
+    right: 12px;
+    bottom: auto;
+    grid-template-columns: repeat(3, 70px);
+  }
+
+  .gallery-strip img {
+    width: 70px;
+    height: 54px;
+  }
+
+  .view-grid {
+    grid-template-columns: repeat(5, minmax(48px, 1fr));
+  }
+}
