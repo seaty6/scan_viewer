@@ -310,6 +310,42 @@ h1 {
   box-shadow: 0 14px 40px rgb(0 0 0 / 32%);
 }
 
+.github-link {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 8px;
+  color: #f5f1eb;
+  background: rgb(22 20 19 / 82%);
+  box-shadow: 0 14px 40px rgb(0 0 0 / 24%);
+  backdrop-filter: blur(18px);
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.github-link:hover {
+  color: #11100f;
+  background: #72d4c7;
+}
+
+.github-link:active {
+  transform: translateY(1px);
+}
+
+.github-link svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
 .loading-overlay {
   position: fixed;
   inset: 0;
@@ -366,9 +402,16 @@ h1 {
 
   .gallery-strip {
     top: 12px;
-    right: 12px;
+    right: 68px;
     bottom: auto;
     grid-template-columns: repeat(3, 70px);
+  }
+
+  .github-link {
+    top: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
   }
 
   .gallery-strip img {
