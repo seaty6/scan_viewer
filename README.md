@@ -17,4 +17,6 @@ npm run dev
 npm run build
 ```
 
-The app is configured for GitHub Pages at `/scan_viewer/`.
+The app is configured for GitHub Pages at the custom domain root:
+
+https://scan.seaty6.com/
